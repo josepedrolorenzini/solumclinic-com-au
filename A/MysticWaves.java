@@ -5,13 +5,13 @@ public class MysticWaves {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter number of test cases (t):");
-        int t = scanner.nextInt();  // number of test cases
+        int t = scanner.nextInt();  // Read number of test cases
 
         // Loop for each test case
         for (int i = 0; i < t; i++) {
             System.out.println("Enter values for x and n:");
-            int x = scanner.nextInt();
-            int n = scanner.nextInt();
+            int x = scanner.nextInt(); // The energy value of one wave
+            int n = scanner.nextInt(); // The number of waves
 
             // Compute total energy
             int totalEnergy;
