@@ -1,0 +1,20 @@
+{
+    "users": [
+        {
+            "mail": "user1@solumclinic.com.au",
+            "password": "12345"
+        },
+        {
+            "mail": "user2@solumclinic.com.au",
+            "password": "1234"
+        },
+        {
+            "mail": "user3@solumclinic.com.au",
+            "password": "1234"
+        },
+        {
+            "mail": "josephlorezini81@gmail.com",
+            "password": "1234"
+        }
+    ]
+}

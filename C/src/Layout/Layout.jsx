@@ -1,13 +1,11 @@
 import React from "react";
 
-const Layout = ({ children }) => {
+const Layout = ({ children , title}) => {
   return (
     <div>
       <header style={headerStyle}>
-        <h1>My Application</h1>
-        <nav>
-          <a href="/">Home</a> | <a href="/about">About Us</a>
-        </nav>
+        <h1>{title}</h1>
+
       </header>
       <main style={mainStyle}>{children}</main>
       <footer style={footerStyle}>

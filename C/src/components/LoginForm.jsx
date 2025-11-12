@@ -1,14 +1,26 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
-function LoginForm() {
+function LoginForm({usuarios}) {
+    console.log(usuarios.users);
 
-    const [email, setEmail] = useState({
-        userMail: "user@solumclinic.com.au"
-    })
-    const [password, setPassword] =  useState('12345');
+    const [users, setUsers] = useState(usuarios.users) ; 
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        console.log(e.target.email.value);
+        console.log(e.target.password.value);
+
+        users.forEach( (user,index) => {
+            console.log(user.mail, user.password);
+            if(user.mail === e.target.email.value){
+                console.log(`User found: ${index}  `, user.mail);
+            }
+        })
+
+        }
+   
   return (
     <>
     <div className="relative flex flex-col rounded-xl bg-transparent">
@@ -18,7 +30,10 @@ function LoginForm() {
   <p className="text-slate-500 font-light">
     Nice to meet you! Enter your details to register.
   </p>
-  <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+  <form 
+  onSubmit={handleSubmit}
+  className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" 
+  >
     <div className="mb-1 flex flex-col gap-6">
       <div className="w-full max-w-sm min-w-[200px]">
         <label className="block mb-2 text-sm text-slate-600">
@@ -29,7 +44,7 @@ function LoginForm() {
         id='email'
        // value={email.userMail}
         className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" 
-        placeholder={email.userMail} />
+        placeholder={users[0].mail} />
       </div>
       <div className="w-full max-w-sm min-w-[200px]">
         <label className="block mb-2 text-sm text-slate-600">
@@ -55,8 +70,11 @@ function LoginForm() {
         Remember Me
       </label>
     </div>
-    <button className="mt-4 w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
-      Sign Up
+    <button 
+    className="mt-4 w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" 
+    type="submit"
+    >
+      Log In
     </button>
     <p className="flex justify-center mt-6 text-sm text-slate-600">
       do not have an account?
