@@ -5,24 +5,28 @@ export default function ProjectSummaryCard() {
     <div className="w-full min-h-80 flex justify-start items-center p-4">
       <div className="relative flex flex-col    border-gray-600 rounded-lg w-full max-w-md">
         <div className="p-6">
-          <b className="text-white leading-normal font-light mb-4 block">
+          <h3 className="text-white leading-normal font-light mb-4 block">
             My technical test project includes:
-          </b>
+          </h3>
 
               <div className="p-2">
-            <p className="text-cyan-500 text-sm">
-              • React app (<code className="bg-gray-700 text-white px-1 rounded">C/</code>) with Vite, Tailwind CSS, Material Tailwind, and React Router
-            </p>
-            <p className="text-cyan-500 text-sm">
-              • Java programs (<code className="bg-gray-700 text-white px-1 rounded">A/</code> and <code className="bg-gray-700 text-white px-1 rounded">B/</code>) including the MysticWaves and CargoCraftFleet solutions
-            </p>
-            <p className="text-cyan-500 text-sm">
-              • Documentation in <code className="bg-gray-700 text-white px-1 rounded">C/README.md</code> covering setup, scripts, and troubleshooting
-            </p>
+                <ul class="list-decimal list-items list-inside">
+            <li className="text-cyan-500 text-sm ">
+              React app (<code className="bg-gray-700 text-white px-1 rounded">C/</code>) with Vite, Tailwind CSS, Material Tailwind, and React Router
+            </li>
+            <li className="text-cyan-500 text-sm">
+              Java programs (<code className="bg-gray-700 text-white px-1 rounded">A/</code> and <code className="bg-gray-700 text-white px-1 rounded">B/</code>) including the MysticWaves and CargoCraftFleet solutions
+            </li>
+            <li className="text-cyan-500 text-sm">
+              Documentation in <code className="bg-gray-700 text-white px-1 rounded">C/README.md</code> covering setup, scripts, and troubleshooting
+            </li>
+
+                </ul>
           </div>
 
-          <div className="m-14-4  border-gray-600">
-            <ul>
+          <div className="m-14 border-gray-600">
+            <h3 className='m-36'>The key features implemented are:</h3>
+            <ul class="list-inside list-decimal">
                 
             <li className="text-cyan-500 text-sm">
             Frontend with modern React stack (Vite, Tailwind, Material UI components)

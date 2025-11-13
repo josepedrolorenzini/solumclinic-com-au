@@ -6,7 +6,7 @@ const About = ({title}) =>{
     
  return  (
     <>
-    <h2>{title}</h2>
+    <h2>{title} Me</h2>
     <p
     className='font-light text-cyan-400'
     >Hello, I'm Joseph Lorenzini, a digital nomad passionate about the internet, web development technology, 
