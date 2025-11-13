@@ -11,7 +11,7 @@ function App({users , title}) {
   users = JSON.parse(JSON.stringify(usuarios));
   const userParams = useLocation();
    
-  console.log(userParams)
+ // console.log(userParams)
   return (
     <>
     <Layout title={userParams.pathname === "/"? "Home": userParams.pathname.slice(1).toUpperCase()}>

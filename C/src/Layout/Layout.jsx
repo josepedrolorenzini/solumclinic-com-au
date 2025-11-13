@@ -1,9 +1,17 @@
 import React, { useState , useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Layout = ({ children , title}) => {
     const [currentPath, setCurrentPath] = useState(window.location.pathname);
     const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem('loggedInUser') ? JSON.parse(localStorage.getItem('loggedInUser')) : null);
 
+
+
+       const handleRemoveLogin = () => {
+           localStorage.removeItem('loggedInUser');
+           setLoggedInUser(null);
+           window.location.href = '/';
+        }
 
      useEffect(() => {
                 console.log("layout loggedInUser changed:"); ;
@@ -15,8 +23,15 @@ const Layout = ({ children , title}) => {
     <div>
       <header style={headerStyle}>
         <h1>{title? title:currentPath}</h1>
-        {loggedInUser ? <p>Welcome, {loggedInUser.name}!</p> : <p>Please log in.</p>}
-
+        {loggedInUser ? 
+       (<>
+         <p>Welcome, {loggedInUser.name}!</p> 
+         <Link to="#"
+        onClick={handleRemoveLogin}>log out</Link> 
+       </>
+       )
+        : <p>Please log in.</p>}
+       
       </header>
       <main style={mainStyle}>{children}</main>
       <footer style={footerStyle}>
