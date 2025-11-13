@@ -9,17 +9,55 @@ function LoginForm({usuarios}) {
      const [users, setUsers] = useState(usuarios.users) ; 
      const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem('loggedInUser') ? JSON.parse(localStorage.getItem('loggedInUser')) : null);
      const [error, setError] = useState('');
-   
+     //validating password
+      const [errorPassword, setErrorPassword] = useState(false);
+      
+      //validating password
+        const validatePassword = (password)=>{
+          // Add password validation logic here
+           if (!password) {
+               setErrorPassword('Password is required') ;
+               return false
+            }
+            if (password.length < 8 || password.length > 16) {
+               setErrorPassword('Password must be between 8-16 characters');
+               return false
+            }
+            if (!/[A-Z]/.test(password)) {
+               setErrorPassword('Password must contain at least one uppercase letter');
+               return false
+            }
+            if (!/[a-z]/.test(password)) {
+               setErrorPassword('Password must contain at least one lowercase letter');
+               return false
+            }
+            if (!/[0-9]/.test(password)) {
+                setErrorPassword('Password must contain at least one number');
+                return false
+            }
+            if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                setErrorPassword('Password must contain at least one symbol');
+                return false
+            }
+            return true;
+        }
+     
+      //validating password
 
+    //  form submission handler
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log(e.target.email.value);
         // console.log(e.target.password.value);
 
+        const passwordValidationResult = validatePassword(e.target.password.value);
+        console.log(passwordValidationResult);
         users.map( (user,index) => {
             console.log(user.mail, user.password);
             /// checking if user exists
             if(user.mail === e.target.email.value && user.password === e.target.password.value){
+
+
                 console.log(`User found: ${index}  `, user.mail);
 
                 setLoggedInUser({
@@ -44,7 +82,7 @@ function LoginForm({usuarios}) {
             }
         })
 
-        }
+        }   //  form submission handler
 
         useEffect(() => {
             console.log("Form element changed") ;
@@ -58,9 +96,13 @@ function LoginForm({usuarios}) {
   <h4 className="block text-xl font-medium text-slate-800">
     Sign Up
   </h4>
-  <p className="text-cyan-400 font-light">
+  <p className="text-cyan-500 font-semibold">
     {error ? <span className="text-red-500">{error}</span> 
-    : !loggedInUser  ? ('Please enter your email and password to sign in.'):( `Hello ${loggedInUser.name}`)}
+    : !loggedInUser  ? ('Please enter your email and password to sign in.')
+    :( ` Hello ${loggedInUser.name}  `)}
+  </p>
+  <p className="text-cyan-400 font-bold">
+    {errorPassword ? <span className="text-red-500">{errorPassword}</span> : null}
   </p>
 
     {loggedInUser ?(

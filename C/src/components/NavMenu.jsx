@@ -6,6 +6,7 @@ import Login from '../pages/Login'
 
 function NavMenu() {
       const userParams = useLocation();
+      
   return (
     <>
       <nav>
