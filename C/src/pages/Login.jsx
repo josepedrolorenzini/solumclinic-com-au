@@ -7,7 +7,6 @@ const Login = ({users}) => {
     users = JSON.parse(JSON.stringify(usuarios));
     return (
         <>
-
           <LoginForm  usuarios={users}  />
         </>
     );

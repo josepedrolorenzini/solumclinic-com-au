@@ -1,20 +1,24 @@
 {
     "users": [
         {
+            "name": "User One",
             "mail": "user1@solumclinic.com.au",
-            "password": "12345"
+            "password": "Password1!"
         },
         {
+            "name": "User Two",
             "mail": "user2@solumclinic.com.au",
-            "password": "1234"
+            "password": "Password1!"
         },
         {
+            "name": "User Three",
             "mail": "user3@solumclinic.com.au",
-            "password": "1234"
+            "password": "Password1!"
         },
         {
-            "mail": "josephlorezini81@gmail.com",
-            "password": "1234"
+            "name": "Joseph Lorenzini",
+            "mail": "josephlorenzini81@gmail.com",
+            "password": "Password1!"
         }
     ]
 }

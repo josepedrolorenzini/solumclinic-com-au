@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Layout = ({ children , title}) => {
+    const [currentPath, setCurrentPath] = useState(window.location.pathname);
   return (
     <div>
       <header style={headerStyle}>
-        <h1>{title}</h1>
+        <h1>{title? title:currentPath}</h1>
 
       </header>
       <main style={mainStyle}>{children}</main>

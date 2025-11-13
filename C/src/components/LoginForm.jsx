@@ -1,25 +1,56 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link,  useNavigate } from 'react-router-dom';
 
 function LoginForm({usuarios}) {
     console.log(usuarios.users);
 
-    const [users, setUsers] = useState(usuarios.users) ; 
+     const myForm = document.getElementById('myForm');
+     const navigate = useNavigate();
+     const [users, setUsers] = useState(usuarios.users) ; 
+     const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem('loggedInUser') ? JSON.parse(localStorage.getItem('loggedInUser')) : null);
+     const [error, setError] = useState('');
+   
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // console.log(e.target.email.value);
+        // console.log(e.target.password.value);
 
-        console.log(e.target.email.value);
-        console.log(e.target.password.value);
-
-        users.forEach( (user,index) => {
+        users.map( (user,index) => {
             console.log(user.mail, user.password);
-            if(user.mail === e.target.email.value){
+            /// checking if user exists
+            if(user.mail === e.target.email.value && user.password === e.target.password.value){
                 console.log(`User found: ${index}  `, user.mail);
+
+                setLoggedInUser({
+                    name: user.name,
+                    mail: user.mail,
+                    password: user.password
+                })
+
+                // adding localstorage
+                localStorage.setItem('loggedInUser', JSON.stringify({
+                    name: user.name,
+                    mail: user.mail,
+                    password: user.password
+                }));
+                //redirection when is successful
+                navigate('/');
+            }else{
+            console.log("User not found or wrong password.");
+             // Optional: Set error message
+            setError('Invalid email or password.');
+        
             }
         })
 
         }
+
+        useEffect(() => {
+            console.log("Form element changed") ;
+            console.log(loggedInUser)
+           
+        }, [loggedInUser]);
    
   return (
     <>
@@ -27,10 +58,28 @@ function LoginForm({usuarios}) {
   <h4 className="block text-xl font-medium text-slate-800">
     Sign Up
   </h4>
-  <p className="text-slate-500 font-light">
-    Nice to meet you! Enter your details to register.
+  <p className="text-cyan-400 font-light">
+    {error ? <span className="text-red-500">{error}</span> 
+    : !loggedInUser  ? ('Please enter your email and password to sign in.'):( `Hello ${loggedInUser.name}`)}
   </p>
-  <form 
+
+    {loggedInUser ?(
+
+      <button 
+      type='button'
+      onClick={e=>{
+        e.preventDefault()
+        console.log(e)
+        console.log(localStorage)
+        localStorage.getItem("loggedInUser")  === null ? 'localstorage empty' :  console.log(localStorage.getItem("loggedInUser"))
+        localStorage.removeItem("loggedInUser");
+        setLoggedInUser(null);
+        navigate('/');
+      }}
+      >Log out</button>
+    ):(
+        <form 
+  id='myForm'
   onSubmit={handleSubmit}
   className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" 
   >
@@ -41,8 +90,7 @@ function LoginForm({usuarios}) {
         </label>
         <input 
         type="email" 
-        id='email'
-       // value={email.userMail}
+        id='email' 
         className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" 
         placeholder={users[0].mail} />
       </div>
@@ -83,6 +131,8 @@ function LoginForm({usuarios}) {
       </Link>
     </p>
   </form>
+    )
+    }
 </div>
     </>
   )
