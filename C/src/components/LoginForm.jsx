@@ -59,7 +59,8 @@ function LoginForm({usuarios}) {
 
 
                 console.log(`User found: ${index}  `, user.mail);
-
+                
+                // setting logged in user state
                 setLoggedInUser({
                     name: user.name,
                     mail: user.mail,

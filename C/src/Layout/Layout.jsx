@@ -1,5 +1,6 @@
 import React, { useState , useEffect } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Layout = ({ children , title}) => {
     const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -34,9 +35,7 @@ const Layout = ({ children , title}) => {
        
       </header>
       <main style={mainStyle}>{children}</main>
-      <footer style={footerStyle}>
-        <p>&copy; 2025 My Application. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 };
@@ -52,14 +51,5 @@ const mainStyle = {
   padding: "20px"
 };
 
-const footerStyle = {
-  background: "#333",
-  color: "#fff",
-  textAlign: "center",
-  position: "fixed",
-  width: "100%",
-  bottom: "0",
-  left: "0"
-};
 
 export default Layout;

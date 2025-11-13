@@ -1,33 +1,39 @@
 // src/components/Home.js
 import React, { useEffect } from 'react';
 import { useState } from 'react'
+import ProjectSummaryCard from '../components/ProjectSummaryCard';
  
 
 const Home = ({title}) => {
       const [count, setCount] = useState(0) ;
-      const [valor, setValor] = useState(false);
+      const [display, setDisplay] = useState(false);
 
 
       function handleSecondClick(e){
         console.log(e.target)
-        setValor(valor => !valor)
+        setDisplay(valor => !valor)
       }
 
       useEffect(()=>{
-        console.log(valor)
-      },[valor])
+        console.log(display)
+      },[display])
 
   return ( 
   <>
   <div>
-      <h2>{title}</h2>
-      <p>Welcome to our homepage! This is where we share the latest updates and news.</p>
-      <p>Click the button to increase the count:</p>
-      <button onClick={() => setCount(count + 1)}>Count: {count}</button>
-      </div>
+      <h2></h2>
+      <p>Welcome to my {title}page!</p>
+      {display && (
+        
+        <ProjectSummaryCard />
+
+      )}
      
-  </>
-      )
+  </div>
+      <button 
+      onClick={handleSecondClick}
+      >Display Technical Test</button>
+  </>);
 };
 
 export default Home;
